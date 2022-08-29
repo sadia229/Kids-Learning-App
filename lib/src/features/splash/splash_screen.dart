@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:kid_starter/constants/asset_path.dart';
+import 'package:kid_starter/styles/k_colors.dart';
 
 import '../home/view/home_screen.dart';
 
@@ -78,14 +80,14 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: KColor.orange,
       body: Stack(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: const [
               Padding(
-                padding: EdgeInsets.only(top: 80),
+                padding: EdgeInsets.only(top: 150),
                 child: Text(
                   'WELCOME\nTO\nKID  STARTER',
                   textAlign: TextAlign.center,
@@ -112,12 +114,12 @@ class _SplashScreenState extends State<SplashScreen>
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFFBAFCF4).withOpacity(.2),
+                      color: KColor.shadow.withOpacity(0.2),
                       blurRadius: 100,
                       spreadRadius: 10,
                     ),
                   ],
-                  color: const Color(0xFFBAFCF4),
+                  color: KColor.redOrange,
                   borderRadius: BorderRadius.circular(20.0),
                 ),
                 child: Center(
@@ -129,7 +131,7 @@ class _SplashScreenState extends State<SplashScreen>
                     ),
                     child: Stack(
                       children: [
-                        Image.asset('assets/images/rocket.png'),
+                        Image.asset(AssetPath.logo),
                         AnimatedBuilder(
                           animation: scaleAnimation,
                           builder: (c, child) => Transform.scale(
@@ -137,7 +139,7 @@ class _SplashScreenState extends State<SplashScreen>
                             child: Container(
                               decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Color(0xFFBAFCF4),
+                                color: KColor.redOrange
                               ),
                             ),
                           ),

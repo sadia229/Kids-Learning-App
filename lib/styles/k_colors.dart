@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 class KColor {
   static const Color primary = Color(0xFF000000);
   static const Color white = Color(0xFFffffff);
+  static const Color orange = Color(0xFDFF7E00);
+  static const Color redOrange = Color(0xFDF8B35B);
+  static const Color shadow = Color(0xFFBAFCF4);
   static const kBackgroundColor = Color(0xFFFEFEFE);
   static const kTitleTextColor = Color(0xFF303030);
   static const kBodyTextColor = Color(0xFF4B4B4B);
