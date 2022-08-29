@@ -1,4 +1,4 @@
 
-# Tanoshi(Kid's Learning App)
+# Tanoshi(Kid's Learning App Using Augmented Reality)
 
 
