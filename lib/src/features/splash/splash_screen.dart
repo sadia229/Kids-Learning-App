@@ -7,6 +7,7 @@ import 'package:kid_starter/constants/asset_path.dart';
 import 'package:kid_starter/styles/k_colors.dart';
 
 import '../home/view/home_screen.dart';
+import '../intro/view/intro_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -47,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen>
             HapticFeedback.lightImpact();
             Navigator.of(context).pushReplacement(
               ThisIsFadeRoute(
-                route: const HomeScreen(),
+                route: const IntroScreen(),
               ),
             );
           }
