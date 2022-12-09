@@ -1,13 +1,12 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:kid_starter/constants/asset_path.dart';
-import 'package:kid_starter/styles/k_colors.dart';
-
-import '../home/view/home_screen.dart';
-import '../intro/view/intro_screen.dart';
+import 'package:kid_starter/src/constants/asset_path.dart';
+import 'package:kid_starter/src/features/home/view/home_screen.dart';
+import 'package:kid_starter/src/service/navigation_service.dart';
+import 'package:kid_starter/src/styles/k_colors.dart';
+import 'package:kid_starter/src/styles/k_text_style.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -21,13 +20,13 @@ class _SplashScreenState extends State<SplashScreen>
   late AnimationController scaleController;
   late Animation<double> scaleAnimation;
   final _audioPlayer = AudioPlayer();
-
   double _opacity = 0;
   bool _value = true;
 
   void _introAudio() async {
     try {
-      await _audioPlayer.setAsset('assets/audio/intro/mystical-wind-chimes.mp3');
+      await _audioPlayer
+          .setAsset('assets/audio/intro/mystical-wind-chimes.mp3');
       _audioPlayer.setVolume(2.0);
       _audioPlayer.play();
     } catch (e) {
@@ -48,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen>
             HapticFeedback.lightImpact();
             Navigator.of(context).pushReplacement(
               ThisIsFadeRoute(
-                route: const IntroScreen(),
+                route: const HomeScreen(),
               ),
             );
           }
@@ -86,18 +85,13 @@ class _SplashScreenState extends State<SplashScreen>
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
+            children: [
               Padding(
-                padding: EdgeInsets.only(top: 150),
+                padding: const EdgeInsets.only(top: 150),
                 child: Text(
                   'WELCOME\nTO\nKID  STARTER',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 35,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: 'CabinSketch',
-                  ),
+                  style: KTextStyle.splashStyle,
                 ),
               ),
             ],
@@ -140,7 +134,7 @@ class _SplashScreenState extends State<SplashScreen>
                             child: Container(
                               decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: KColor.redOrange
+                                color: KColor.redOrange,
                               ),
                             ),
                           ),
@@ -156,21 +150,4 @@ class _SplashScreenState extends State<SplashScreen>
       ),
     );
   }
-}
-
-class ThisIsFadeRoute extends PageRouteBuilder {
-  final Widget route;
-
-  ThisIsFadeRoute({required this.route})
-      : super(
-          pageBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-          ) =>
-              FadeTransition(
-            opacity: animation,
-            child: route,
-          ),
-        );
 }

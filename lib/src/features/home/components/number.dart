@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:kid_starter/components/card/header_card.dart';
-import 'package:kid_starter/components/card/tile_card.dart';
-import 'package:kid_starter/src/features/home/controller/numeric_en_controller.dart';
-import 'package:kid_starter/styles/k_colors.dart';
+import 'package:kid_starter/src/components/card/header_card.dart';
+import 'package:kid_starter/src/components/card/tile_card.dart';
+import 'package:kid_starter/src/data/numeric_en_controller.dart';
+import 'package:kid_starter/src/service/audio_service.dart';
+import 'package:kid_starter/src/styles/k_colors.dart';
 
 class NumberScreen extends StatefulWidget {
   final String title;
@@ -24,34 +25,14 @@ class NumberScreen extends StatefulWidget {
 class _NumberScreenState extends State<NumberScreen> {
   final _scrollController = ScrollController();
   final _audioPlayer = AudioPlayer();
+  AudioService audioService = AudioService();
   double offset = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController.addListener(onScroll);
-  }
 
   @override
   void dispose() {
     _scrollController.dispose();
     _audioPlayer.dispose();
     super.dispose();
-  }
-
-  void onScroll() {
-    setState(() {
-      offset = (_scrollController.hasClients) ? _scrollController.offset : 0;
-    });
-  }
-
-  void _playAudio(String assetPath) async {
-    try {
-      await _audioPlayer.setAsset(assetPath);
-      _audioPlayer.play();
-    } catch (e) {
-      debugPrint("Error loading audio source: $e");
-    }
   }
 
   @override
@@ -84,7 +65,8 @@ class _NumberScreenState extends State<NumberScreen> {
                   child: TileCard(
                     title: numericEnList[index].text,
                     textColor: KColor.getIndexColor(index),
-                    onTap: () => _playAudio(numericEnList[index].audio),
+                    onTap: () =>
+                        audioService.playAudio(numericEnList[index].audio),
                   ),
                 );
               },

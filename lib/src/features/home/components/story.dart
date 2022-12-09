@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kid_starter/components/card/header_card.dart';
-import 'package:kid_starter/styles/k_text_style.dart';
+import 'package:kid_starter/src/components/card/header_card.dart';
+import 'package:kid_starter/src/styles/k_text_style.dart';
 
 class StoryScreen extends StatefulWidget {
   final String title;
