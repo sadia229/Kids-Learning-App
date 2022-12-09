@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kid_starter/components/card/header_card.dart';
-import 'package:kid_starter/styles/b_style.dart';
+import 'package:kid_starter/src/components/card/header_card.dart';
+import 'package:kid_starter/src/styles/b_style.dart';
 
 class ShapeScreen extends StatefulWidget {
   final String title;
@@ -23,21 +23,9 @@ class _ShapeScreenState extends State<ShapeScreen> {
   double offset = 0;
 
   @override
-  void initState() {
-    super.initState();
-    _scrollController.addListener(onScroll);
-  }
-
-  @override
   void dispose() {
     _scrollController.dispose();
     super.dispose();
-  }
-
-  void onScroll() {
-    setState(() {
-      offset = (_scrollController.hasClients) ? _scrollController.offset : 0;
-    });
   }
 
   @override
