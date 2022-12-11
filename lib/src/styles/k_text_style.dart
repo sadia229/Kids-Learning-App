@@ -40,6 +40,16 @@ class KTextStyle {
     fontFamily: GoogleFonts.indieFlower().fontFamily,
   );
 
+  static TextStyle subtitle3 = const TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w700,
+  );
+
+  static TextStyle subtitle4 = const TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+  );
+
   static TextStyle titleStyle = const TextStyle(
     fontFamily: 'CabinSketch',
     fontWeight: FontWeight.w700,
