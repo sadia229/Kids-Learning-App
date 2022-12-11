@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kid_starter/src/components/card/header_card.dart';
-import 'package:kid_starter/src/styles/k_text_style.dart';
+import 'package:kid_starter/src/components/card/video_card.dart';
+import 'package:kid_starter/src/data/videos.dart';
+import 'package:kid_starter/src/features/home/components/story_details.dart';
+import 'package:video_player/video_player.dart';
 
 class StoryScreen extends StatefulWidget {
   final String title;
@@ -19,66 +22,40 @@ class StoryScreen extends StatefulWidget {
 }
 
 class _StoryScreenState extends State<StoryScreen> {
-  final _scrollController = ScrollController();
   double offset = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController.addListener(onScroll);
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  void onScroll() {
-    setState(() {
-      offset = (_scrollController.hasClients) ? _scrollController.offset : 0;
-    });
-  }
+  bool check = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        controller: _scrollController,
-        physics: const BouncingScrollPhysics(),
-        slivers: [
-          SliverToBoxAdapter(
-            child: PageHeader(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            PageHeader(
               title: widget.title,
               primaryColor: widget.primaryColor,
               secondaryColor: widget.secondaryColor,
               offset: offset,
             ),
-          ),
-          SliverGrid(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 1,
-              crossAxisSpacing: 20.0,
-            ),
-            delegate: SliverChildBuilderDelegate(
-              childCount: 1,
-              (context, index) {
-                return Padding(
-                  padding: index % 2 == 0
-                      ? const EdgeInsets.only(bottom: 20, left: 20)
-                      : const EdgeInsets.only(bottom: 20, right: 20),
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Coming soon...',
-                      style: KTextStyle.subtitle1,
+            ListView.builder(
+              physics: const ScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: storyList.length,
+              itemBuilder: (ctx, index) {
+                return Column(
+                  children: [
+                    VideoCard(
+                      tap: () =>Navigator.pushNamed(context, '/storyView'),
+                      thumbImage: storyList[index].thumb,
+                      name: storyList[index].name,
+                      time: storyList[index].time,
                     ),
-                  ),
+                  ],
                 );
               },
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

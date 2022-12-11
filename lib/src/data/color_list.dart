@@ -1,5 +1,3 @@
-
-
 import 'package:kid_starter/src/features/home/model/color_model.dart';
 
 List<ColorModel> colorList = [

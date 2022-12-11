@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:kid_starter/src/data/alphabet_en_controller.dart';
+import 'package:kid_starter/src/data/alphabet_en_list.dart';
 import 'package:kid_starter/src/components/card/header_card.dart';
 import 'package:kid_starter/src/components/card/tile_card.dart';
 import 'package:kid_starter/src/service/audio_service.dart';
